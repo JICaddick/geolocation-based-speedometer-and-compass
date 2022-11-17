@@ -52,13 +52,24 @@
       display: flex;
       align-items: center;
     }
-
+    
     .units {
-      font-size: 15px;
+        font-size: 15px;
     }
     /*Compass: https://thenounproject.com/search/?q=compass&i=592352*/
-  </style>
+    </style>
   <script>
+      // geolocation isn't just getting lat and long, it gives us a heading and speed data too. 
+      const arrow = document.querySelector('.arrow');
+    const speed = document.querySelector('.speed-value');
+
+    navigator.geolocation.watchPosition((data) => {
+      console.log(data);
+      speed.textContent = data.coords.speed;
+      arrow.style.transform = `rotate(${data.coords.heading}deg)`;
+    }, (err) => {
+      console.error(err);
+    });
   </script>
 </body>
 </html>
