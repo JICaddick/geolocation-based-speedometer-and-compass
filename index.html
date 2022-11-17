@@ -59,13 +59,17 @@
     /*Compass: https://thenounproject.com/search/?q=compass&i=592352*/
     </style>
   <script>
-      // geolocation isn't just getting lat and long, it gives us a heading and speed data too. 
+  //Xcode is a dev tool for iOS and macOS. It allows you to write code and run it on your phone or computer.
+  // geolocation isn't just getting lat and long, it gives us a heading and speed data too. 
+  // We'll listen to the users position using the watchPosition method.
       const arrow = document.querySelector('.arrow');
     const speed = document.querySelector('.speed-value');
 
     navigator.geolocation.watchPosition((data) => {
       console.log(data);
       speed.textContent = data.coords.speed;
+      // the style.transform css code here is how we rotate the arrow on the compass. 
+      // data.coords.heading is the number of degrees relative to true north.
       arrow.style.transform = `rotate(${data.coords.heading}deg)`;
     }, (err) => {
       console.error(err);
